@@ -1,21 +1,28 @@
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import java.awt.*;
+
 import javax.swing.*;
 
 
 
+public class Laskinikkuna  {
+        
+        public JPanel laskinikkuna;
+
+        public Laskinikkuna(){
+
+            this.laskinikkuna = new JPanel();            
+            this.laskinikkuna.setBounds(1200, 300, 400, 500);
+            this.laskinikkuna.setBackground(Color.red);
+            
+            
 
 
-public class Laskinikkuna implements Runnable {
+        }
+        public JPanel getLaskinikkuna(){
+                return this.laskinikkuna;
+        }
     
-    @Override
-    public void run(){
 
-        JFrame ikkuna = new JFrame();
-        ikkuna.setTitle("Laskin");
-        ikkuna.setSize(300, 600);
-        ikkuna.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ikkuna.setVisible(true);
 
-    }
+
 }

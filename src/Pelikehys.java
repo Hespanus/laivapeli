@@ -1,28 +1,33 @@
-import java.awt.*;
-import java.awt.event.*;
-import java.util.*;
-import javax.swing.*;
+import javax.swing.JFrame;
 
 
 
 
 
 
-public class Pelikehys extends JFrame {
 
-    Laskinikkuna laskinikkuna;
 
+
+public class Pelikehys implements Runnable {
+
+    public JFrame kehys;
     
-    Pelikehys(){
-
-        laskinikkuna = new Laskinikkuna();
+    public Pelikehys(){
+        this.kehys = new JFrame();
+    }
+    
+    public void run() {
+        
+        Laskinikkuna laskinikkuna = new Laskinikkuna();
 
         
-        this.setTitle("Laivanupotus");
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);        
-        this.setSize(1600, 800);
-        this.setVisible(true);
-        this.add(laskinikkuna);
+        kehys.setTitle("Laivapeli");
+        kehys.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);        
+        kehys.setLayout(null); //Nyt voi asetella käsin JPaneleita yms. kehykseen, kun tuo on nollattu.
+        kehys.setSize(1600, 800);
+        kehys.add(laskinikkuna.getLaskinikkuna()); //Ei tuntunut toimivan pelkästään olio lisäämällä. Ainakin getterillä toimii.
+        kehys.setVisible(true);
+        
         
 
 
