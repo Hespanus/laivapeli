@@ -2,8 +2,11 @@ import javax.swing.JPanel;
 import java.awt.*;
 
 public class Pelialue extends JPanel {
-    static final int rivit = 10;
-	  static final int sarakkeet = 20;
+    
+	
+	
+	static final int rivit = 12;
+	  static final int sarakkeet = 24;
 	  
 	  static final int alkuX = 0;
 	  static final int alkuY = 0;
@@ -11,10 +14,10 @@ public class Pelialue extends JPanel {
 
       
 	  @Override
-	  protected void paintComponent(Graphics g) {
+	  public void paintComponent(Graphics g) {
 		  super.paintComponent(g);
 		  //Graphics2D g2 = (Graphics2D) g;
-		  
+		  //this.setBounds(0, 0, 1200, 800);
 		  for(int i= 0; i<rivit + 1; i++) {
 			  g.drawLine(alkuX, alkuY + i * nelioSivu, alkuX + sarakkeet * nelioSivu, alkuY + i * nelioSivu);
 		  }
@@ -27,7 +30,6 @@ public class Pelialue extends JPanel {
 	  
         
     }
-    public JPanel getPelialue(){
-        return this;
-    }
+	
+    
 }

@@ -11,7 +11,7 @@ public class Laskinikkuna  {
         public Laskinikkuna(){
 
             this.laskinikkuna = new JPanel();            
-            this.laskinikkuna.setBounds(1200, 300, 400, 500);
+            this.laskinikkuna.setBounds(1205, 300, 395, 500);
             this.laskinikkuna.setBackground(Color.red);
             
             
