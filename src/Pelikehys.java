@@ -6,7 +6,7 @@ import javax.swing.JPanel;
 
 public class Pelikehys implements Runnable {
 
-    
+    //testi
     
     @Override
     public void run() {
