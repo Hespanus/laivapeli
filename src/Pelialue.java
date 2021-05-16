@@ -16,16 +16,14 @@ public class Pelialue extends JPanel {
 	  @Override
 	  public void paintComponent(Graphics g) {
 		  super.paintComponent(g);
-		  //Graphics2D g2 = (Graphics2D) g;
-		  //this.setBounds(0, 0, 1200, 800);
+		  
 		  for(int i= 0; i<rivit + 1; i++) {
 			  g.drawLine(alkuX, alkuY + i * nelioSivu, alkuX + sarakkeet * nelioSivu, alkuY + i * nelioSivu);
 		  }
 		  for(int i= 0; i< sarakkeet + 1; i++) {
 			  g.drawLine(alkuX + i * nelioSivu, alkuY, alkuX + i * nelioSivu, alkuY + rivit * nelioSivu);
 		  }
-		  //g2.setColor(Color.black);
-          //g2.draw(new Line2D.Double(1000, 0, 1000, 720));
+		  
 		  
 	  
         
