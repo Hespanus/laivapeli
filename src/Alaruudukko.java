@@ -10,7 +10,7 @@ public class Alaruudukko {
     public Alaruudukko(){
 
         this.alaruudukko = new JPanel();
-        this.alaruudukko.setBounds(0, 0, 401, 602);
+        this.alaruudukko.setBounds(0, 603, 325, 1600);
         this.alaruudukko.setBackground(Color.blue);
 
 
