@@ -7,11 +7,10 @@ public class paaohjelma {
         SwingUtilities.invokeLater(new Pelikehys());  // Tämä liittyy Runnableen ja invokeLater varmistaa, että elementit
                                                     // suoritetaan kun ne on kaikki valmiina -tarpeen Swing-juttujen kanssa
                                                     // lukemani perusteella.  
-        JFrame frame = new JFrame("test");
-        frame.setSize(1280, 720);
+       // JFrame frame = new JFrame("test");
+       // frame.setSize(1280, 720);
 
-        Pelialue testi = new Pelialue();
-        frame.add(testi);
-        frame.setVisible(true);
+        //Pelialue testi = new Pelialue();
+       // frame.setVisible(true);
     }
 }

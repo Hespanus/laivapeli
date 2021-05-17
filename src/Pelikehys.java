@@ -18,6 +18,8 @@ public class Pelikehys implements Runnable {
         Laskinikkuna laskinikkuna = new Laskinikkuna();
         Pelialue alue = new Pelialue();
         JPanel kentta = alue;
+        AlaRuudukko ruudukko = new AlaRuudukko();
+        kehys.add(ruudukko);
         kentta.setBounds(0,0, 1230, 602);
         kehys.setTitle("Laivapeli");
         kehys.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);        
