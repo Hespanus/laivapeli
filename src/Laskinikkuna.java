@@ -17,7 +17,7 @@ public class Laskinikkuna implements ActionListener {
         JButton plussa, miinus, kerto, jako, nelioj;
         JButton piste, yhtakuin, pyyhi, tyhjaa;
         Font fontti = new Font("Verdana", Font.BOLD, 18);
-
+        String SQR = "\u221A";
         double num1 = 0, num2 = 0, tulos = 0;
         char operator;
 
@@ -37,7 +37,7 @@ public class Laskinikkuna implements ActionListener {
 
              tyhjaa = new JButton("C");
              pyyhi = new JButton("Del");
-             nelioj = new JButton("4ju");
+             nelioj = new JButton(SQR);
              jako = new JButton("/");
              kerto = new JButton("*");
 
