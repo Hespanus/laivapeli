@@ -6,16 +6,19 @@ import java.awt.event.*;
 
 public class Laskinikkuna implements ActionListener {
         
-        public JPanel laskinikkuna;
-        public JTextField tekstikentta;
+        JPanel laskinikkuna;
+        JTextField tekstikentta;
+        JTextArea lasketut;
         JButton[] numerot = new JButton[10]; //taulukot napeille helpottamaan niiden asetusten tekoa
-        JButton[] funktiot = new JButton[9];
+        JButton[] funktiot = new JButton[10];
         JButton plussa, miinus, kerto, jako, nelioj;
-        JButton piste, yhtakuin, pyyhi, tyhjaa;
-        Font fontti = new Font("Verdana", Font.BOLD, 18); //fontti oli oletuksena liian pieni
+        JButton piste, yhtakuin, pyyhi, tyhjaa, clrlask;
+        Font fontti = new Font("Verdana", Font.BOLD, 16); //fontti oli oletuksena liian pieni
         String SQR = "\u221A";  //Löytyi oikea utf-8 merkki, joskin yläviiva puuttuu.
         double num1 = 0, num2 = 0, tulos = 0;
         char operator; //tarvitaan switch-rakenteessa
+        
+
 
         public Laskinikkuna(){
 
@@ -26,7 +29,11 @@ public class Laskinikkuna implements ActionListener {
             tekstikentta.setBounds(1250, 450, 325, 50); //tekstikenttä menee JFrameen, olisi voinut kai tehdä sitä ja
             tekstikentta.setBackground(Color.white);   //tekstialuetta varten toisen JPanelin ja laittaa siihen.
             tekstikentta.setFont(fontti);
-            tekstikentta.setEditable(false);       
+            tekstikentta.setEditable(false);
+            
+            lasketut = new JTextArea(10, 20);
+            lasketut.setFont(fontti);
+            lasketut.setBounds(1250, 100, 325, 345);
 
             
 
@@ -40,6 +47,13 @@ public class Laskinikkuna implements ActionListener {
              plussa = new JButton("+");
              piste = new JButton(".");
              yhtakuin = new JButton("=");
+             clrlask = new JButton();
+             clrlask.setLayout(new BorderLayout()); //2 riviä tekstiä buttoniin layoutin ja labeleiden             
+             JLabel label1 = new JLabel("CLR"); //avulla.
+             JLabel label2 = new JLabel("Mem");             
+             clrlask.add(BorderLayout.NORTH,label1);
+             clrlask.add(BorderLayout.CENTER,label2);
+   
 
              funktiot[0] = tyhjaa; //laitetaan napit taulukkoon
              funktiot[1] = pyyhi;
@@ -50,8 +64,9 @@ public class Laskinikkuna implements ActionListener {
              funktiot[6] = plussa;
              funktiot[7] = piste;
              funktiot[8] = yhtakuin;
+             funktiot[9] = clrlask;
 
-             for(int i = 0; i < 9; i++){
+             for(int i = 0; i < 10; i++){
                      funktiot[i].addActionListener(this);//luokka toteuttaa (implements) actionPerformed-metodin kautta
                      funktiot[i].setFont(fontti);  //ActionListenerin ja siihen voidaan viitata nyt määreellä "this".
                      funktiot[i].setFocusable(false);//estää nappuloiden valinnan tab-näppäimellä, ei tule turhia efektejä nappeihin.
@@ -84,7 +99,7 @@ public class Laskinikkuna implements ActionListener {
             laskinikkuna.add(numerot[3]);
 
             laskinikkuna.add(funktiot[6]);
-            laskinikkuna.add(new JButton(""));
+            laskinikkuna.add(funktiot[9]);
             laskinikkuna.add(numerot[0]);
             laskinikkuna.add(funktiot[7]);
             laskinikkuna.add(funktiot[8]);         
@@ -97,35 +112,41 @@ public class Laskinikkuna implements ActionListener {
         public void actionPerformed(ActionEvent e){
                 for( int i = 0; i < 10; i++){
                         if(e.getSource() == numerot[i]){ //jos numero, muunnetaan stringiksi ja katenoidaan yhteen.
-                               tekstikentta.setText(tekstikentta.getText().concat(String.valueOf(i))); 
-                        }       //liitetään tekstikenttään
+                               tekstikentta.setText(tekstikentta.getText().concat(String.valueOf(i))); //liitetään tekstikenttään
+                               lasketut.append(String.valueOf(i)); //textareaan voi lisätä appendilla kätevästi
+                        }       
                 }
 
                 if(e.getSource() == piste){
                         tekstikentta.setText(tekstikentta.getText().concat("."));
+                        lasketut.append(".");
                 }
                 if(e.getSource() == plussa){
                         num1 = Double.parseDouble(tekstikentta.getText()); //muunnetaan doubleksi laskemista varten
                         operator = '+';
                         tekstikentta.setText(""); //kenttä tyhjennetään seuraavaa lukua varten.
+                        lasketut.append("+");
                 }
 
                 if(e.getSource() == miinus){
                         num1 = Double.parseDouble(tekstikentta.getText());
                         operator = '-';
                         tekstikentta.setText("");
+                        lasketut.append("-");
                 }
 
                 if(e.getSource() == kerto){
                         num1 = Double.parseDouble(tekstikentta.getText());
                         operator = '*';
                         tekstikentta.setText("");
+                        lasketut.append("*");
                 }
 
                 if(e.getSource() == jako){
                         num1 = Double.parseDouble(tekstikentta.getText());
                         operator = '/';
                         tekstikentta.setText("");
+                        lasketut.append("/");
                 }
 
                 if(e.getSource() == nelioj){  //neliöjuuri piti tehdä erikseen näin, ilman swithchiä
@@ -133,7 +154,11 @@ public class Laskinikkuna implements ActionListener {
                         tulos = Math.sqrt(num1); //Javan Math-luokan valmis neliöjuurimetodi
                         tekstikentta.setText(String.valueOf(tulos));  //ei tyhjätä nyt, vaan asetetaan tulos.
                         num1 = tulos;   //Jos haluaa käyttää tulosta heti seuraavaan laskuun, pitää num1 olla tulos
+                        lasketut.append(SQR+" = "+String.valueOf(tulos)+"\n");
                         
+                }
+                if(e.getSource() == clrlask){
+                        lasketut.setText("");
                 }
 
                 if(e.getSource() == yhtakuin){ // "="-merkkiä painettaessa num2 arvoksi asetetaan kentässä oleva luku
@@ -161,6 +186,7 @@ public class Laskinikkuna implements ActionListener {
                         }
 
                         tekstikentta.setText(String.valueOf(tulos));
+                        lasketut.append(" = "+String.valueOf(tulos)+"\n"); // rivinvaihto saadaan \n
                         num1 = tulos;
 
 
@@ -181,15 +207,14 @@ public class Laskinikkuna implements ActionListener {
         }
 
 
-
-
-
-
         public JPanel getLaskinikkuna(){
                 return this.laskinikkuna;
         }
         public JTextField gettekstikentta(){
                 return this.tekstikentta;
+        }
+        public JTextArea getlasketut(){
+                return this.lasketut;
         }
 
         
