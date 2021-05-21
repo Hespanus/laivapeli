@@ -13,10 +13,14 @@ public class Laskinikkuna implements ActionListener {
         JButton[] funktiot = new JButton[10];
         JButton plussa, miinus, kerto, jako, nelioj;
         JButton piste, yhtakuin, pyyhi, tyhjaa, clrlask;
-        Font fontti = new Font("Verdana", Font.BOLD, 16); //fontti oli oletuksena liian pieni
+        Font fontti = new Font("Verdana", Font.PLAIN, 16); //fontti oli oletuksena liian pieni
+        //Font pienif = new Font("Verdana", Font.PLAIN, 10);
         String SQR = "\u221A";  //Löytyi oikea utf-8 merkki, joskin yläviiva puuttuu.
         double num1 = 0, num2 = 0, tulos = 0;
         char operator; //tarvitaan switch-rakenteessa
+        JLabel memo = new JLabel("Memo");
+
+
         
 
 
@@ -34,6 +38,8 @@ public class Laskinikkuna implements ActionListener {
             lasketut = new JTextArea(10, 20);
             lasketut.setFont(fontti);
             lasketut.setBounds(1250, 100, 325, 345);
+            memo.setBounds(1395, 80, 50, 20);
+            memo.setFont(fontti);
 
             
 
@@ -48,9 +54,9 @@ public class Laskinikkuna implements ActionListener {
              piste = new JButton(".");
              yhtakuin = new JButton("=");
              clrlask = new JButton();
-             clrlask.setLayout(new BorderLayout()); //2 riviä tekstiä buttoniin layoutin ja labeleiden             
-             JLabel label1 = new JLabel("CLR"); //avulla.
-             JLabel label2 = new JLabel("Mem");             
+             clrlask.setLayout(new BorderLayout()); //2 riviä tekstiä buttoniin layoutin ja labeleiden avulla.            
+             JLabel label1 = new JLabel("CLR"); 
+             JLabel label2 = new JLabel("Memo");                        
              clrlask.add(BorderLayout.NORTH,label1);
              clrlask.add(BorderLayout.CENTER,label2);
    
@@ -67,13 +73,13 @@ public class Laskinikkuna implements ActionListener {
              funktiot[9] = clrlask;
 
              for(int i = 0; i < 10; i++){
-                     funktiot[i].addActionListener(this);//luokka toteuttaa (implements) actionPerformed-metodin kautta
-                     funktiot[i].setFont(fontti);  //ActionListenerin ja siihen voidaan viitata nyt määreellä "this".
-                     funktiot[i].setFocusable(false);//estää nappuloiden valinnan tab-näppäimellä, ei tule turhia efektejä nappeihin.
+                     funktiot[i].addActionListener(this);  //luokka toteuttaa (implements) actionPerformed-metodin kautta
+                     funktiot[i].setFont(fontti);       //ActionListenerin ja siihen voidaan viitata nyt määreellä "this".
+                     funktiot[i].setFocusable(false);  //estää nappuloiden valinnan tab-näppäimellä, ei tule turhia efektejä nappeihin.
              }
 
              for(int i = 0; i < 10; i++){
-                     numerot[i] = new JButton(String.valueOf(i));//luo kätevästi indeksin mukaisen numeronapin
+                     numerot[i] = new JButton(String.valueOf(i));  //luo kätevästi indeksin mukaisen numeronapin
                      numerot[i].addActionListener(this);
                      numerot[i].setFont(fontti);
                      numerot[i].setFocusable(false);
@@ -149,9 +155,9 @@ public class Laskinikkuna implements ActionListener {
                         lasketut.append("/");
                 }
 
-                if(e.getSource() == nelioj){  //neliöjuuri piti tehdä erikseen näin, ilman swithchiä
+                if(e.getSource() == nelioj){  //neliöjuuri piti tehdä erikseen näin, ilman swithchiä.
                         num1 = Double.parseDouble(tekstikentta.getText());                        
-                        tulos = Math.sqrt(num1); //Javan Math-luokan valmis neliöjuurimetodi
+                        tulos = Math.sqrt(num1); //Javan Math-luokan valmis neliöjuurimetodi.
                         tekstikentta.setText(String.valueOf(tulos));  //ei tyhjätä nyt, vaan asetetaan tulos.
                         num1 = tulos;   //Jos haluaa käyttää tulosta heti seuraavaan laskuun, pitää num1 olla tulos
                         lasketut.append(SQR+" = "+String.valueOf(tulos)+"\n");
@@ -215,12 +221,11 @@ public class Laskinikkuna implements ActionListener {
         }
         public JTextArea getlasketut(){
                 return this.lasketut;
-        }
+        } 
+        public JLabel getmemo(){
+                return this.memo;
+        }    
 
         
-
-        
-
-
 
 }
