@@ -13,8 +13,7 @@ public class Laskinikkuna implements ActionListener {
         JButton[] funktiot = new JButton[10];
         JButton plussa, miinus, kerto, jako, nelioj;
         JButton piste, yhtakuin, pyyhi, tyhjaa, clrlask;
-        Font fontti = new Font("Verdana", Font.PLAIN, 16); //fontti oli oletuksena liian pieni
-        //Font pienif = new Font("Verdana", Font.PLAIN, 10);
+        Font fontti = new Font("Verdana", Font.PLAIN, 16);  //fontti oli oletuksena liian pieni        
         String SQR = "\u221A";  //Löytyi oikea utf-8 merkki, joskin yläviiva puuttuu.
         double num1 = 0, num2 = 0, tulos = 0;
         char operator; //tarvitaan switch-rakenteessa
@@ -29,16 +28,18 @@ public class Laskinikkuna implements ActionListener {
             laskinikkuna = new JPanel(new GridLayout(5, 4, 10, 10)); //kaksi vikaa numeroa antaa borderit napeille           
             laskinikkuna.setBounds(1270, 500, 300, 400); //laskimen asettelu JFrameen ja koko
             laskinikkuna.setBackground(Color.white);
+
             tekstikentta = new JTextField();
             tekstikentta.setBounds(1250, 450, 325, 50); //tekstikenttä menee JFrameen, olisi voinut kai tehdä sitä ja
             tekstikentta.setBackground(Color.white);   //tekstialuetta varten toisen JPanelin ja laittaa siihen.
             tekstikentta.setFont(fontti);
             tekstikentta.setEditable(false);
             
-            lasketut = new JTextArea(10, 20);
+            lasketut = new JTextArea(10, 20); //alue lasketuille laskuille
             lasketut.setFont(fontti);
             lasketut.setBounds(1250, 100, 325, 345);
-            memo.setBounds(1395, 80, 50, 20);
+
+            memo.setBounds(1395, 80, 50, 20); //Otsikko edelliselle
             memo.setFont(fontti);
 
             
@@ -56,12 +57,12 @@ public class Laskinikkuna implements ActionListener {
              clrlask = new JButton();
              clrlask.setLayout(new BorderLayout()); //2 riviä tekstiä buttoniin layoutin ja labeleiden avulla.            
              JLabel label1 = new JLabel("CLR"); 
-             JLabel label2 = new JLabel("Memo");                        
+             JLabel label2 = new JLabel("Mem");                        
              clrlask.add(BorderLayout.NORTH,label1);
              clrlask.add(BorderLayout.CENTER,label2);
    
 
-             funktiot[0] = tyhjaa; //laitetaan napit taulukkoon
+             funktiot[0] = tyhjaa; //laitetaan napit taulukkoon käsittelyä varten
              funktiot[1] = pyyhi;
              funktiot[2] = nelioj;
              funktiot[3] = jako;
@@ -80,7 +81,7 @@ public class Laskinikkuna implements ActionListener {
 
              for(int i = 0; i < 10; i++){
                      numerot[i] = new JButton(String.valueOf(i));  //luo kätevästi indeksin mukaisen numeronapin
-                     numerot[i].addActionListener(this);
+                     numerot[i].addActionListener(this);           //ja sijoitetaan samalla taulukkoon
                      numerot[i].setFont(fontti);
                      numerot[i].setFocusable(false);
              }
@@ -167,10 +168,10 @@ public class Laskinikkuna implements ActionListener {
                         lasketut.setText("");
                 }
 
-                if(e.getSource() == yhtakuin){ // "="-merkkiä painettaessa num2 arvoksi asetetaan kentässä oleva luku
+                if(e.getSource() == yhtakuin){    // "="-merkkiä painettaessa num2 arvoksi asetetaan kentässä oleva luku
                         num2 = Double.parseDouble(tekstikentta.getText());
 
-                        switch(operator){//tässä käytetään case-kohdissa ylempänä määriteltyjä operator-merkkejä.
+                        switch(operator){     //tässä käytetään case-kohdissa ylempänä määriteltyjä operator-merkkejä.
                         case '+':       
                                 tulos = num1 + num2;
                                 break; 

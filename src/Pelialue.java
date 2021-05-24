@@ -18,11 +18,11 @@ public class Pelialue extends JPanel {
 		super.paintComponent(g);
 		
 		for(int i= 0; i<rivit + 1; i++) {
-			g.drawString(String.valueOf(50*i), 10, (alkuY + i * nelioSivu)+5);
+			g.drawString(String.valueOf(500*i), 10, (alkuY + i * nelioSivu)+5);
 			g.drawLine(alkuX, alkuY + i * nelioSivu, alkuX + sarakkeet * nelioSivu, alkuY + i * nelioSivu);  
 		}
 		for(int i= 0; i< sarakkeet + 1; i++) {
-			g.drawString(String.valueOf(50*i) , alkuX + i * nelioSivu, 30);
+			g.drawString(String.valueOf(500*i) , alkuX + i * nelioSivu, 30);
 			g.drawLine(alkuX + i * nelioSivu, alkuY, alkuX + i * nelioSivu, alkuY + rivit * nelioSivu);
 		}
 	}
