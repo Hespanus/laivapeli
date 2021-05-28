@@ -13,9 +13,9 @@ public class Pelialue extends JPanel implements Runnable{
 	int laivaX = 60;
 	int laivaY = 60;
 	
-	static final int laivaHalkaisija = 20;
-	static final int xNopeus = 4;
-	static final int yNopeus = 2;
+	static final int laivaHalkaisija = 5;
+	static final double xNopeus = 2;
+	static final double yNopeus = 0;
 	static final int rivit = 11;
 	static final int sarakkeet = 23;
 
