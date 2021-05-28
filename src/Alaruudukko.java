@@ -6,9 +6,8 @@ import javax.swing.*;
 public class Alaruudukko {
 
     public JPanel alaruudukko;
-    public JTextField tekstikentta;
-    JButton[] ammus = new JButton[1];
-    public JButton ammu;
+    //public JTextArea tekstikentta;    
+    //public JButton ammu;
 
     public Alaruudukko(){
 
@@ -16,18 +15,19 @@ public class Alaruudukko {
         this.alaruudukko.setBounds(2, 603, 1200, 302);
         this.alaruudukko.setBackground(Color.white);
 
+        //tekstikentta = new JTextArea();
+       // alaruudukko.add(tekstikentta);
+        //ammu = new JButton("AMMU");
 
-        ammu = new JButton("AMMU");
+        
 
-        ammus[1] = ammu;
-
-        alaruudukko.add(ammus[1]);
+        //alaruudukko.add(ammu);
 
     }
         public JPanel getAlaruudukko(){
             return this.alaruudukko;
         }
-        public JTextField gettekstikentta(){
-            return this.tekstikentta;
-    }
+        //public JTextArea gettekstikentta(){
+          //  return this.tekstikentta;
+    //}
 }
