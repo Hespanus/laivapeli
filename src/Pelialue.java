@@ -2,20 +2,12 @@ import javax.swing.JPanel;
 import java.awt.*;
 import java.util.Random;
 
-public class Pelialue extends JPanel implements Runnable{
+public class Pelialue extends JPanel{
 
-	Thread thread;
-    
-	Random numGen = new Random();
-	int xRand = numGen.nextInt(1150 - 400 + 1) + 400;
-	int yRand = numGen.nextInt(550 - 200 + 1) + 200;
-
-	int laivaX = 60;
-	int laivaY = 60;
 	
-	static final int laivaHalkaisija = 5;
-	static final double xNopeus = 2;
-	static final double yNopeus = 0;
+	
+	
+	
 	static final int rivit = 11;
 	static final int sarakkeet = 23;
 
@@ -24,20 +16,7 @@ public class Pelialue extends JPanel implements Runnable{
 	static final int alkuY = 40;
 	static final int nelioSivu = 50;
 
-	Pelialue(){
-		thread = new Thread(this);
-		thread.start();
-	}
-
-	public void move() {
-		if (laivaX < (xRand+30)) {
-			laivaX += xNopeus;
-		}
-		if (laivaY < (yRand+30)) {
-			laivaY += yNopeus;
-		}
 	
-	}
 
 	@Override
 	public void paint(Graphics g) {
@@ -51,30 +30,11 @@ public class Pelialue extends JPanel implements Runnable{
 			g.drawString(String.valueOf(500*i) , alkuX + i * nelioSivu, 30);
 			g.drawLine(alkuX + i * nelioSivu, alkuY, alkuX + i * nelioSivu, alkuY + rivit * nelioSivu);
 		}
-		g.setColor(Color.red);
-		g.fillOval(laivaX, laivaY, laivaHalkaisija, laivaHalkaisija);
-		Toolkit.getDefaultToolkit().sync();
+		
 
 	}
 
-	public void run(){
-
-        long lastTime = System.nanoTime();
-        double amountOfTicks =64.0;
-        double ns = 1000000000 / amountOfTicks;
-        double delta = 0;
-        while(true) {
-            long now = System.nanoTime();
-            delta += (now - lastTime)/ns;
-            lastTime = now;
-            if(delta >=1){
-                move();
-				repaint();
-                delta--;
-            }
-           
-        }
-    }
+	
 
 	
 	
