@@ -6,23 +6,24 @@ import javax.swing.*;
 public class Alaruudukko {
 
     public JPanel alaruudukko;
-    public JTextField tekstikentta;
+    public JTextArea tekstikentta;
 
 
     public Alaruudukko(){
 
         this.alaruudukko = new JPanel();
+        alaruudukko.setLayout(null);
         this.alaruudukko.setBounds(2, 603, 1200, 302);
-        this.alaruudukko.setBackground(Color.white);
+        this.alaruudukko.setBackground(Color.gray);
         JButton nappula = new JButton ("AMMU");
 
-        nappula.setBounds(200, 610, 100, 50);
+        nappula.setBounds(800, 2, 100, 50);
         alaruudukko.add(nappula);
        
 
-        JTextField tekstikentta;
-        tekstikentta = new JTextField("Ammu laiva!");
-        tekstikentta.setBounds(2, 1000, 100, 200);
+        
+        tekstikentta = new JTextArea("Ammu laiva!");
+        tekstikentta.setBounds(2, 2, 700, 200);
         alaruudukko.add(tekstikentta);
       
  
