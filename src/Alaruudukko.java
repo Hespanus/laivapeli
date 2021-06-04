@@ -115,7 +115,7 @@ public class Alaruudukko extends Pelialue implements ActionListener {
         
         tekstikentta = new JTextArea("Ammu laiva!");        
         tekstikentta.setBounds(2, 2, 700, 200);
-        tekstikentta.append("Tavoitteena on ampua ruudukolla etenevä laiva" +  "\n" + "Tuulen nopeus ja suunta vaikuttavat laivan ja ammuksen kulkuun." + "\n" + "Voit käyttää laskinta apuna" +
+        tekstikentta.append("\n" + "Tavoitteena on ampua ruudukolla etenevä laiva" +  "\n" + "Tuulen nopeus ja suunta vaikuttavat laivan ja ammuksen kulkuun." + "\n" + "Voit käyttää laskinta apuna" +
         "\n" + "Paina ammu-nappia ampuaksesi ammus" + "\n" + "Kun haluat aloittaa pelin, paina aloita-nappia." + "\n" + "\n");
         tekstikentta.append(String.valueOf(nopeus));
         tekstikentta.append("\n"+ String.valueOf(laiva.getnopeus()));
