@@ -82,20 +82,6 @@ public class Alaruudukko extends Pelialue implements ActionListener {
 
         alaruudukko = new JPanel();
         alaruudukko.setLayout(null);
-<<<<<<< HEAD
-        this.alaruudukko.setBounds(2, 603, 1200, 302);
-        this.alaruudukko.setBackground(Color.gray);
-        JButton nappula = new JButton ("AMMU");
-        JButton pelinappula = new JButton ("Aloita peli!");
-        nappula.setBounds(800, 2, 100, 50);
-        pelinappula.setBounds(900, 2, 100, 50);
-        alaruudukko.add(nappula);
-        alaruudukko.add(pelinappula);
-       
-
-        alaruudukko.setLayout(null);
-        tekstikentta = new JTextArea();
-=======
         alaruudukko.setBounds(2, 603, 1200, 302);
         alaruudukko.setBackground(Color.gray);
         ammuNappi = new JButton ("AMMU");
@@ -128,10 +114,9 @@ public class Alaruudukko extends Pelialue implements ActionListener {
 
         
         tekstikentta = new JTextArea("Ammu laiva!");        
->>>>>>> 471b3bc4ffe90b0d511997ff0ec7c99d582ed80a
         tekstikentta.setBounds(2, 2, 700, 200);
         tekstikentta.setText(String.valueOf(nopeus));
-        tekstikennta.append("Tavoitteena on ampua ruudukolla etenevä laiva" +  "\n" + "Tuulen nopeus ja suunta vaikuttavat laivan ja ammuksen kulkuun." + "\n" + "Voit käyttää laskinta apuna" +
+        tekstikentta.append("Tavoitteena on ampua ruudukolla etenevä laiva" +  "\n" + "Tuulen nopeus ja suunta vaikuttavat laivan ja ammuksen kulkuun." + "\n" + "Voit käyttää laskinta apuna" +
         "\n" + "Paina ammu-nappia ampuaksesi ammus" + "\n" + "Kun haluat aloittaa pelin, paina aloita-nappia.");
         tekstikentta.append("\n"+ String.valueOf(laiva.getnopeus()));
         alaruudukko.add(tekstikentta);
