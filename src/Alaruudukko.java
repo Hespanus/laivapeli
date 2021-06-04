@@ -108,7 +108,7 @@ public class Alaruudukko extends Pelialue implements ActionListener {
         aloitaNappi.addActionListener(this);
         alaruudukko.add(aloitaNappi);
         kuljettuMatka = new JLabel();
-        kuljettuMatka.setBounds(800, 250, 200, 50);
+        kuljettuMatka.setBounds(725, 125, 200, 50);
         kuljettuMatka.setBackground(Color.white);
         kuljettuMatka.setBorder(BorderFactory.createBevelBorder(1));
         kuljettuMatka.setOpaque(true);
@@ -116,10 +116,15 @@ public class Alaruudukko extends Pelialue implements ActionListener {
         alaruudukko.add(kuljettuMatka);
 
         ammusMatka = new JLabel();
-        //ammusMatka.setBounds();
+        ammusMatka.setBounds(950, 125, 200, 50);
+        ammusMatka.setBackground(Color.white);
+        ammusMatka.setBorder(BorderFactory.createBevelBorder(1));
+        ammusMatka.setOpaque(true);
+        alaruudukko.add(ammusMatka);
 
         tahtaysx = new JTextField();
         tahtaysx.setBounds(800, 2, 100, 50);
+        alaruudukko.add(tahtaysx);
 
         
         tekstikentta = new JTextArea("Ammu laiva!");        
@@ -145,12 +150,14 @@ public class Alaruudukko extends Pelialue implements ActionListener {
         }
 
         if(e.getSource() == ammuNappi){
+            ammustart();
+            //tahtaysx.getinte
 
 
         }
     }
 
-    void  laivastart(){
+    void laivastart(){
         laivakello.start();
     }
 
