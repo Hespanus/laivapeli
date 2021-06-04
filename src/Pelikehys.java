@@ -4,20 +4,19 @@ import javax.swing.JPanel;
 
 
 
-public class Pelikehys implements Runnable {
+public class Pelikehys {
 
     
     
-    @Override
-    public void run() {
+    
+    public Pelikehys() {
 
-        final JFrame kehys;
-        kehys = new JFrame();
+        JFrame kehys = new JFrame();
         
         
         Laskinikkuna laskinikkuna = new Laskinikkuna();
-        Pelialue alue = new Pelialue();
-        JPanel kentta = alue;
+        
+        JPanel kentta = new Pelialue();
         Alaruudukko ruudukko = new Alaruudukko();        
         kentta.setBounds(0, 0, 1230, 602);
         kehys.setTitle("Laivapeli");
