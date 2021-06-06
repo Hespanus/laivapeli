@@ -4,18 +4,18 @@ public class Ammus {
     private double nopeus; //metriä/sekunti
     private int alkuY;
     //private int alkuX;
-    private int tahtaysX;
+    private double tahtaysX;
     private double tahtaysY;
     private double sijaintiX;
     private double sijaintiY;
 
     
 
-    public Ammus(double tuuli, int tahtaysX, int tahtaysY){
+    public Ammus(double tuuli, double tahtaysX, int tahtaysY){
         this.tuuli = tuuli;
         this.tahtaysX = tahtaysX;
         this.tahtaysY = tahtaysY;
-        alkuY = 0;
+        alkuY = 5500;
         //alkuX = tahtaysX;
         sijaintiX = tahtaysX;
         sijaintiY = alkuY;
@@ -24,13 +24,16 @@ public class Ammus {
     }
 
     public void liikutaAmmusta(){
-        this.sijaintiY += nopeus/10;
-        if(tahtaysX < 6000){
-            sijaintiX += tuuli/10;
-        }else if(tahtaysX > 6000){
-            sijaintiX -= tuuli/10;
-        }
+        sijaintiY -= nopeus/10;
+        sijaintiX += 2*tuuli/10;
     }
+
+    public void pysaytaAmmus(){
+        sijaintiY = 0;
+        sijaintiX = 0;
+
+    }
+    
     public double getSijaintiX(){
         return sijaintiX;
     }
