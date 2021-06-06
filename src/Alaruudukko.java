@@ -7,20 +7,9 @@ import javax.swing.*;
 
 
 
-public class Alaruudukko extends Pelialue implements ActionListener {
+public class Alaruudukko implements ActionListener {
 
-    static final double xNopeus = 1;
-	static final int rivit = 11;
-	static final int sarakkeet = 23;
-
-	  
-	static final int alkuX = 40;
-	static final int alkuY = 40;
-	static final int nelioSivu = 50;
-
-	int laivaX = 40;
-	int laivaY = 190;
-	static final int laivaHalkaisija = 3;
+    
 
     public JPanel alaruudukko;
     public JTextArea tekstikentta;
@@ -29,19 +18,25 @@ public class Alaruudukko extends Pelialue implements ActionListener {
     JLabel kuljettuMatka;
     JLabel ammusMatka;
 
+    JLabel tahtaysOhje;
+
     JTextField tahtaysx; 
+    String tuulenSuunta;
     
 
-    
+    ThreadLocalRandom tuuli = ThreadLocalRandom.current();		
+    int tuulinopeus = tuuli.nextInt(0, 11);
 
     ThreadLocalRandom random = ThreadLocalRandom.current();		
     int nopeus = random.nextInt(35, 51);
     
-    ThreadLocalRandom tuuli = ThreadLocalRandom.current();		
-    int tuulinopeus = random.nextInt(0, 11);
+    
+    
+    
+
 
     Laiva laiva = new Laiva(nopeus);
-    Ammus ammus = new Ammus(tuulinopeus, 6000, 6000);
+    Ammus ammus; 
 
 
     Timer laivakello = new Timer(100, new ActionListener() {
@@ -83,13 +78,18 @@ public class Alaruudukko extends Pelialue implements ActionListener {
         alaruudukko = new JPanel();
         alaruudukko.setLayout(null);
         alaruudukko.setBounds(2, 603, 1200, 302);
-        alaruudukko.setBackground(Color.gray);
+        alaruudukko.setBackground(Color.lightGray);
         ammuNappi = new JButton ("AMMU");
         aloitaNappi = new JButton("ALOITA");
 
         ammuNappi.setBounds(300, 220, 100, 50);
         ammuNappi.addActionListener(this);
         alaruudukko.add(ammuNappi);
+
+        tahtaysOhje = new JLabel("Aseta tähtäys X:");
+        tahtaysOhje.setBounds(450, 220, 125, 50);
+        alaruudukko.add(tahtaysOhje);
+
         aloitaNappi.setBounds(150, 220, 100, 50);
         aloitaNappi.addActionListener(this);
         alaruudukko.add(aloitaNappi);
@@ -109,16 +109,16 @@ public class Alaruudukko extends Pelialue implements ActionListener {
         alaruudukko.add(ammusMatka);
 
         tahtaysx = new JTextField();
-        tahtaysx.setBounds(800, 2, 100, 50);
+        tahtaysx.setBounds(550, 220, 100, 50);
         alaruudukko.add(tahtaysx);
 
         
         tekstikentta = new JTextArea("Ammu laiva!");        
         tekstikentta.setBounds(2, 2, 700, 200);
-        tekstikentta.setText(String.valueOf(nopeus));
-        tekstikentta.append("Tavoitteena on ampua ruudukolla etenevä laiva" +  "\n" + "Tuulen nopeus ja suunta vaikuttavat laivan ja ammuksen kulkuun." + "\n" + "Voit käyttää laskinta apuna" +
+        //tekstikentta.setText(String.valueOf(nopeus));
+        tekstikentta.append("Tavoitteena on ampua ruudukolla etenevä laiva" +  "\n" + "Tuulen nopeus ja suunta vaikuttavat ammuksen kulkuun." + "\n" + "Voit käyttää laskinta apuna" +
         "\n" + "Paina ammu-nappia ampuaksesi ammus" + "\n" + "Kun haluat aloittaa pelin, paina aloita-nappia.");
-        tekstikentta.append("\n"+ String.valueOf(laiva.getnopeus()));
+        //tekstikentta.append("\n"+ String.valueOf(laiva.getnopeus()));
         alaruudukko.add(tekstikentta);
       
  
@@ -129,12 +129,23 @@ public class Alaruudukko extends Pelialue implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e){
          if (e.getSource() == aloitaNappi){
+             tekstikentta.setText("");
+             tekstikentta.setText("Laivan nopeus: "+String.valueOf(nopeus)+"km/h");
+             if(tuulinopeus < 0){
+                tuulenSuunta = ("<--");
+            } else if(tuulinopeus > 0){
+                tuulenSuunta = ("-->");
+            } else{
+                tuulenSuunta =("");
+            }
+             tekstikentta.append("\n"+"Tuulen suunta: "+tuulenSuunta);
              laivastart();
-             piirrastart();
+             //piirrastart();
 
         }
 
         if(e.getSource() == ammuNappi){
+            ammus = new Ammus(tuulinopeus, 6000, 1500);
             ammustart();
             //tahtaysx.getinte
 

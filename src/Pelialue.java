@@ -18,11 +18,11 @@ public class Pelialue extends JPanel{
 	final int alkuY = 40;
 	final int nelioSivu = 50;
 
-	int laivaX = 40;
+	int laivaX = 640;
 	int laivaY = 190;
 	static final int laivaHalkaisija = 5;
 
-	Timer piirra = new Timer(1000, new ActionListener() {
+	/*Timer piirra = new Timer(1000, new ActionListener() {
   
         public void actionPerformed(ActionEvent e) {
             
@@ -32,7 +32,7 @@ public class Pelialue extends JPanel{
          
         }
         
-       });
+       });*/
 
 
 	
@@ -57,7 +57,7 @@ public class Pelialue extends JPanel{
 
 	}
 
-	public void move() {
+	/*public void move() {
 		
 		laivaX += xNopeus;
 		
@@ -65,7 +65,7 @@ public class Pelialue extends JPanel{
 	}
 	public void piirrastart(){
 		piirra.start();
-	}
+	}*/
 
 
 
