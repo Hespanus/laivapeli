@@ -17,6 +17,7 @@ public class Alaruudukko implements ActionListener {
     JButton aloitaNappi;
     JLabel kuljettuMatka;
     JLabel ammusMatka;
+    JLabel ammusMatkaY;
     Ammus ammus;
 
     JLabel tahtaysOhje;
@@ -27,6 +28,8 @@ public class Alaruudukko implements ActionListener {
     Font fontti = new Font("Verdana", Font.PLAIN, 14);
 
     JLabel laivainfo; 
+    JLabel ammusinfo;
+    JLabel ammusinfoY;
     
     
 
@@ -34,10 +37,8 @@ public class Alaruudukko implements ActionListener {
     int tuulinopeus = tuuli.nextInt(-11, 11);
 
     ThreadLocalRandom random = ThreadLocalRandom.current();		
-    int nopeus = random.nextInt(35, 51);
-    
-    
-    
+    int nopeus = random.nextInt(35, 51);   
+      
     
 
 
@@ -45,11 +46,12 @@ public class Alaruudukko implements ActionListener {
      
 
 
-    Timer laivakello = new Timer(100, new ActionListener() {
+    Timer laivakello = new Timer(100, new ActionListener() { //laivaa liikuttava Timer-luuppi, liikuttaa laivaa 10 kertaa sekunnissa
   
         public void actionPerformed(ActionEvent e) {
             laiva.liikutaLaivaa();
-            kuljettuMatka.setText(String.valueOf(laiva.getsijaintiX()));          
+            kuljettuMatka.setText(String.valueOf(laiva.getsijaintiX()));
+                     
             
                     
          
@@ -57,24 +59,36 @@ public class Alaruudukko implements ActionListener {
         
        });
 
-       Timer ammuskello = new Timer(100, new ActionListener() {
+       Timer ammuskello = new Timer(100, new ActionListener() { // ammusta liikuttava Timer-luuppi 
   
         public void actionPerformed(ActionEvent e) {
 
-            while(ammus.getSijaintiY() >= 1500){
-                ammus.liikutaAmmusta();
+            if(ammus.getSijaintiY() > 1500){
+                ammus.liikutaAmmusta();                
                 ammusMatka.setText(String.valueOf(ammus.getSijaintiX()));
-                if(ammus.getSijaintiY() == ammus.getTahtaysY()){
-                    if(laiva.getsijaintiX() >= ammus.getSijaintiX()-10 && laiva.getsijaintiX() <= ammus.getSijaintiX()+10){
-                        tekstikentta.setText("Osuma, Laiva upposi!");
-                    } else{
-                        tekstikentta.setText("Ohi meni, pelaa uudelleen!");
-                    }
-                
-                }      
+                ammusMatkaY.setText(String.valueOf(ammus.getSijaintiY()));
             }
-                                      
-                             
+            
+            
+
+            if(ammus.getSijaintiY() == 1500){
+                if(laiva.getsijaintiX() >= ammus.getSijaintiX()-10 && laiva.getsijaintiX() <= ammus.getSijaintiX()+10){
+                    tekstikentta.setText("Osuma, Laiva upposi!");
+                    ammus.pysaytaAmmus();
+                    ammuskello.stop();
+                    laivakello.stop(); 
+                } else{
+                    tekstikentta.setText("Ohi meni, pelaa uudelleen!");
+                    ammus.pysaytaAmmus();
+                    ammuskello.stop();
+                }
+            }
+                
+           
+                
+                     
+                                                 
+                            
         }
         
        });
@@ -90,14 +104,15 @@ public class Alaruudukko implements ActionListener {
             } else if(tuulinopeus > 0){
                 tuulenSuunta = ("--->");
             } else{
-                tuulenSuunta =("");
+                tuulenSuunta =("0");
             }
+            tekstikentta.append("\n"+ "Ammuksen nopeus 500 m/s");
             tekstikentta.append("\n"+ "Tuulen nopeus: " + String.valueOf(Math.abs(tuulinopeus))+" m/s");
 
             tekstikentta.append("\n"+"Tuulen suunta: "+tuulenSuunta);
             tekstikentta.append("\n"+"1 m/s tuulta poikkeuttaa ammusta 2m/kuljettu sekunti");
             laivastart();
-             //piirrastart();
+             //piirrastart(); //käytetään jos liikkuva grafiikka lisätään myöhemmin.
 
         }
 
@@ -129,19 +144,19 @@ public class Alaruudukko implements ActionListener {
         ammuNappi = new JButton ("AMMU");
         aloitaNappi = new JButton("ALOITA");
 
-        ammuNappi.setBounds(300, 220, 100, 50);
+        ammuNappi.setBounds(550, 220, 100, 50);
         ammuNappi.addActionListener(this);
         alaruudukko.add(ammuNappi);
 
         tahtaysOhje = new JLabel("Aseta tähtäys X:");
-        tahtaysOhje.setBounds(450, 220, 125, 50);
+        tahtaysOhje.setBounds(300, 220, 125, 50);
         alaruudukko.add(tahtaysOhje);
 
         aloitaNappi.setBounds(150, 220, 100, 50);
         aloitaNappi.addActionListener(this);
         alaruudukko.add(aloitaNappi);
         kuljettuMatka = new JLabel();
-        kuljettuMatka.setBounds(725, 125, 200, 50);
+        kuljettuMatka.setBounds(725, 50, 200, 50);
         kuljettuMatka.setBackground(Color.white);
         kuljettuMatka.setBorder(BorderFactory.createBevelBorder(1));
         kuljettuMatka.setOpaque(true);
@@ -149,18 +164,35 @@ public class Alaruudukko implements ActionListener {
         alaruudukko.add(kuljettuMatka);
 
         ammusMatka = new JLabel();
-        ammusMatka.setBounds(950, 125, 200, 50);
+        ammusMatka.setBounds(950, 50, 200, 50);
         ammusMatka.setBackground(Color.white);
         ammusMatka.setBorder(BorderFactory.createBevelBorder(1));
         ammusMatka.setOpaque(true);
         alaruudukko.add(ammusMatka);
 
+        ammusMatkaY = new JLabel();
+        ammusMatkaY.setBounds(950, 170, 200, 50);
+        ammusMatkaY.setBackground(Color.white);
+        ammusMatkaY.setBorder(BorderFactory.createBevelBorder(1));
+        ammusMatkaY.setOpaque(true);
+        alaruudukko.add(ammusMatkaY);
+
         tahtaysx = new JTextField();
-        tahtaysx.setBounds(550, 220, 100, 50);
+        tahtaysx.setBounds(410, 220, 100, 50);
         alaruudukko.add(tahtaysx);
 
-        laivainfo = new JLabel("Laiva kulkenut / m");
-        laivainfo.setBounds(725, 100, 200, 24);
+        laivainfo = new JLabel("Laiva kulkenut / metriä:");
+        laivainfo.setBounds(725, 25, 200, 24);
+        alaruudukko.add(laivainfo);
+
+        ammusinfo = new JLabel("Ammus X-suunnassa:");
+        ammusinfo.setBounds(950, 25, 200, 24);
+        alaruudukko.add(ammusinfo);
+
+        ammusinfoY = new JLabel("Ammus Y-suunnassa:");
+        ammusinfoY.setBounds(950, 140, 200, 24);
+        alaruudukko.add(ammusinfoY);
+
 
         
         tekstikentta = new JTextArea();
@@ -168,7 +200,7 @@ public class Alaruudukko implements ActionListener {
         tekstikentta.setBounds(2, 2, 700, 200);
         //tekstikentta.setText(String.valueOf(nopeus));
         tekstikentta.append("Tavoitteena on ampua ruudukolla etenevä laiva" +  "\n" + "Tuulen nopeus ja suunta vaikuttavat ammuksen kulkuun." + "\n" + "Voit käyttää laskinta apuna" +
-        "\n" + "Paina ammu-nappia ampuaksesi ammus" + "\n" + "Kun haluat aloittaa pelin, paina aloita-nappia.");
+        "\n" + "Aseta x-koordinaatin tähtäys ja paina oikeaan aikaan ammu-nappia" + "\n" + "Kun haluat aloittaa pelin, paina aloita-nappia.");
         //tekstikentta.append("\n"+ String.valueOf(laiva.getnopeus()));
         alaruudukko.add(tekstikentta);
       

@@ -17,6 +17,10 @@ public class Laiva {
     public void liikutaLaivaa(){
         this.sijaintiX += nopeus/10; //eteneminen sekunnin kymmenesosassa
     }
+    public void pysaytaLaiva(){
+        sijaintiX = 0;
+        sijaintiY = 0;
+    }
 
     public double getsijaintiX(){
         return sijaintiX;
