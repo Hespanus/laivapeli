@@ -18,9 +18,14 @@ public class Pelialue extends JPanel{
 	final int alkuY = 40;
 	final int nelioSivu = 50;
 
-	int laivaX = 640;
-	int laivaY = 190;
-	static final int laivaHalkaisija = 5;
+	int laivaX = 637;
+	int laivaY = 187;
+	final int laivaHalkaisija = 10;
+
+
+	int tykkiX = 637;
+	int tykkiY = 585;
+	final int tykkiHalkaisija = 10;
 
 	/*Timer piirra = new Timer(1000, new ActionListener() {
   
@@ -52,6 +57,10 @@ public class Pelialue extends JPanel{
 
 		g.setColor(Color.red);
 		g.fillOval(laivaX, laivaY, laivaHalkaisija, laivaHalkaisija);
+		Toolkit.getDefaultToolkit().sync();
+
+		g.setColor(Color.black);
+		g.fillOval(tykkiX, tykkiY, tykkiHalkaisija, tykkiHalkaisija);
 		Toolkit.getDefaultToolkit().sync();
 		
 
