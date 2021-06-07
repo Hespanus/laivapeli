@@ -106,6 +106,8 @@ public class Alaruudukko implements ActionListener {
             } else{
                 tuulenSuunta =("0");
             }
+            tekstikentta.append("\n"+ "Tykki: X=6000, Y=5500");
+            tekstikentta.append("\n"+ "Yritä osua kohdassa X=6000, Y=1500");
             tekstikentta.append("\n"+ "Ammuksen nopeus 500 m/s");
             tekstikentta.append("\n"+ "Tuulen nopeus: " + String.valueOf(Math.abs(tuulinopeus))+" m/s");
 
@@ -139,8 +141,9 @@ public class Alaruudukko implements ActionListener {
 
         alaruudukko = new JPanel();
         alaruudukko.setLayout(null);
-        alaruudukko.setBounds(2, 603, 1200, 302);
+        alaruudukko.setBounds(2, 603, 1188, 302);
         alaruudukko.setBackground(Color.lightGray);
+        alaruudukko.setBorder(BorderFactory.createBevelBorder(1));
         ammuNappi = new JButton ("AMMU");
         aloitaNappi = new JButton("ALOITA");
 
@@ -198,7 +201,7 @@ public class Alaruudukko implements ActionListener {
         tekstikentta = new JTextArea();
         tekstikentta.setFont(fontti);        
         tekstikentta.setBounds(2, 2, 700, 200);
-        //tekstikentta.setText(String.valueOf(nopeus));
+        tekstikentta.setBorder(BorderFactory.createBevelBorder(1));
         tekstikentta.append("Tavoitteena on ampua ruudukolla etenevä laiva" +  "\n" + "Tuulen nopeus ja suunta vaikuttavat ammuksen kulkuun." + "\n" + "Voit käyttää laskinta apuna" +
         "\n" + "Aseta x-koordinaatin tähtäys ja paina oikeaan aikaan ammu-nappia" + "\n" + "Kun haluat aloittaa pelin, paina aloita-nappia.");
         //tekstikentta.append("\n"+ String.valueOf(laiva.getnopeus()));

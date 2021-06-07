@@ -26,20 +26,22 @@ public class Laskinikkuna implements ActionListener {
         public Laskinikkuna(){
 
             laskinikkuna = new JPanel(new GridLayout(5, 4, 10, 10)); //kaksi vikaa numeroa antaa borderit napeille           
-            laskinikkuna.setBounds(1270, 500, 300, 400); //laskimen asettelu JFrameen ja koko
-            laskinikkuna.setBackground(Color.white);
+            laskinikkuna.setBounds(1250, 500, 326, 400); //laskimen asettelu JFrameen ja koko
+            //laskinikkuna.setBackground(Color.white);
 
             tekstikentta = new JTextField();
-            tekstikentta.setBounds(1250, 450, 325, 50); //tekstikenttä menee JFrameen, olisi voinut kai tehdä sitä ja
+            tekstikentta.setBounds(1250, 447, 325, 50); //tekstikenttä menee JFrameen, olisi voinut kai tehdä sitä ja
             tekstikentta.setBackground(Color.white);   //tekstialuetta varten toisen JPanelin ja laittaa siihen.
+            tekstikentta.setBorder(BorderFactory.createBevelBorder(1));
             tekstikentta.setFont(fontti);
             tekstikentta.setEditable(false);
             
             lasketut = new JTextArea(10, 20); //alue lasketuille laskuille
             lasketut.setFont(fontti);
+            lasketut.setBorder(BorderFactory.createBevelBorder(1));
             lasketut.setBounds(1250, 100, 325, 345);
 
-            memo.setBounds(1395, 80, 50, 20); //Otsikko edelliselle
+            memo.setBounds(1395, 80, 50, 20); //Otsikko edelliselle            
             memo.setFont(fontti);
 
             
