@@ -43,7 +43,7 @@ public class Pelialue extends JPanel{
 	
 
 	@Override
-	public void paintComponent(Graphics g) {
+	public void paintComponent(Graphics g) { // Pelialueen(koordinaatisto) piirtäminen -Villen tekemä
 		super.paintComponent(g);
 		
 		for(int i= 0; i<rivit + 1; i++) {
@@ -55,18 +55,18 @@ public class Pelialue extends JPanel{
 			g.drawLine(alkuX + i * nelioSivu, alkuY, alkuX + i * nelioSivu, alkuY + rivit * nelioSivu);
 		}
 
-		g.setColor(Color.red);
+		g.setColor(Color.red); //laivaa kuvaava piste
 		g.fillOval(laivaX, laivaY, laivaHalkaisija, laivaHalkaisija);
 		Toolkit.getDefaultToolkit().sync();
 
-		g.setColor(Color.black);
+		g.setColor(Color.black);//tykkiä kuvaava piste
 		g.fillOval(tykkiX, tykkiY, tykkiHalkaisija, tykkiHalkaisija);
 		Toolkit.getDefaultToolkit().sync();
 		
 
 	}
 
-	/*public void move() {
+	/*public void move() { //laivan liikkumista varten -joskus myöhemmin
 		
 		laivaX += xNopeus;
 		

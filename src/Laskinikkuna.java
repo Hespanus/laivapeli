@@ -227,7 +227,9 @@ public class Laskinikkuna implements ActionListener {
         } 
         public JLabel getmemo(){
                 return this.memo;
-        }    
+        } 
+        
+        
 
         
 

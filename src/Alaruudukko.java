@@ -7,7 +7,7 @@ import javax.swing.*;
 
 
 
-public class Alaruudukko implements ActionListener {
+public class Alaruudukko  implements ActionListener {
 
     
 
@@ -73,7 +73,7 @@ public class Alaruudukko implements ActionListener {
             
 
             if(ammus.getSijaintiY() == 1500){
-                if(laiva.getsijaintiX() >= ammus.getSijaintiX()-10 && laiva.getsijaintiX() <= ammus.getSijaintiX()+10){
+                if(laiva.getsijaintiX() >= ammus.getSijaintiX()-10 && laiva.getsijaintiX() <= ammus.getSijaintiX()+10){ //osuman tarkistus
                     tekstikentta.setText("Osuma, Laiva upposi!");
                     ammus.pysaytaAmmus();
                     ammuskello.stop();
@@ -96,7 +96,7 @@ public class Alaruudukko implements ActionListener {
 
     
     @Override
-    public void actionPerformed(ActionEvent e){
+    public void actionPerformed(ActionEvent e){//aloitanappi laukaisee ohjeet ja laivan etenemisen
          if (e.getSource() == aloitaNappi){
              tekstikentta.setText("");
              tekstikentta.setText("Laivan nopeus: "+String.valueOf(nopeus)+"km/h");
@@ -107,14 +107,15 @@ public class Alaruudukko implements ActionListener {
             } else{
                 tuulenSuunta =("0");
             }
-            tekstikentta.append("\n"+ "Tykki: X=6000, Y=5500");
-            tekstikentta.append("\n"+ "Yritä osua kohdassa X=6000, Y=1500");
-            tekstikentta.append("\n"+ "Ammuksen nopeus 500 m/s");
-            tekstikentta.append("\n"+ "Tuulen nopeus: " + String.valueOf(Math.abs(tuulinopeus))+" m/s");
+            tekstikentta.append("\n"+ "Tykki: X=6000, Y=5500.");
+            tekstikentta.append("\n"+ "Yritä osua kohdassa X=6000, Y=1500.");
+            tekstikentta.append("\n"+ "Ammuksen nopeus 500 m/s.");
+            tekstikentta.append("\n"+ "Tuulen nopeus: " + String.valueOf(Math.abs(tuulinopeus))+" m/s.");
 
             tekstikentta.append("\n"+"Tuulen suunta: "+tuulenSuunta);
-            tekstikentta.append("\n"+"1 m/s tuulta poikkeuttaa ammusta 2m/kuljettu sekunti");
-            laivastart();
+            tekstikentta.append("\n"+"1 m/s tuulta poikkeuttaa ammusta 2m/kuljettu sekunti.");
+            tekstikentta.append("\n"+"Voit kirjoittaa laskimen Memo-kenttään myös muistiinpanoja. Paina lopuksi enter.");
+            laivastart(); //käynnistää laivaluokan laivaa liikuttavan metodin
              //piirrastart(); //käytetään jos liikkuva grafiikka lisätään myöhemmin.
 
         }
@@ -125,7 +126,10 @@ public class Alaruudukko implements ActionListener {
             ammustart();
             
 
-
+        }
+        if(e.getSource() == ohjeNappi){
+            tekstikentta.append("\n"+"-----------------------------------------------------------------------------------------------");
+            tekstikentta.append("\n"+"Muunna km/h --> m/s"+"\n"+"Mieti kuinka paljon laiva liikkuu ammuksen liikkuessa.");
         }
     }
 
@@ -208,7 +212,7 @@ public class Alaruudukko implements ActionListener {
         tekstikentta.setFont(fontti);        
         tekstikentta.setBounds(2, 2, 700, 200);
         tekstikentta.setBorder(BorderFactory.createBevelBorder(1));
-        tekstikentta.append("Tavoitteena on ampua ruudukolla etenevä laiva" +  "\n" + "Tuulen nopeus ja suunta vaikuttavat ammuksen kulkuun." + "\n" + "Voit käyttää laskinta apuna" +
+        tekstikentta.append("Tavoitteena on ampua ruudukolla etenevä laiva(etenee vaakasuoraan, y = 1500)" +  "\n" + "Tuulen nopeus ja suunta vaikuttavat ammuksen kulkuun." + "\n" + "Voit käyttää laskinta apuna" +
         "\n" + "Aseta x-koordinaatin tähtäys ja paina oikeaan aikaan ammu-nappia" + "\n" + "Kun haluat aloittaa pelin, paina aloita-nappia.");
         //tekstikentta.append("\n"+ String.valueOf(laiva.getnopeus()));
         alaruudukko.add(tekstikentta);
