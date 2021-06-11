@@ -15,6 +15,7 @@ public class Alaruudukko implements ActionListener {
     public JTextArea tekstikentta;
     JButton ammuNappi;
     JButton aloitaNappi;
+    JButton ohjeNappi;
     JLabel kuljettuMatka;
     JLabel ammusMatka;
     JLabel ammusMatkaY;
@@ -146,10 +147,15 @@ public class Alaruudukko implements ActionListener {
         alaruudukko.setBorder(BorderFactory.createBevelBorder(1));
         ammuNappi = new JButton ("AMMU");
         aloitaNappi = new JButton("ALOITA");
+        ohjeNappi = new JButton("VINKKEJÄ");
 
         ammuNappi.setBounds(550, 220, 100, 50);
         ammuNappi.addActionListener(this);
         alaruudukko.add(ammuNappi);
+
+        ohjeNappi.setBounds(30, 220, 100, 50);
+        ohjeNappi.addActionListener(this);
+        alaruudukko.add(ohjeNappi);
 
         tahtaysOhje = new JLabel("Aseta tähtäys X:");
         tahtaysOhje.setBounds(300, 220, 125, 50);
